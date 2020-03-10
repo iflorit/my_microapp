@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            img {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+        </style>
+    </head>
+    <body style="background-color:#1565c0;">
+        <center><font color="#ffc107">Example Micro App - Mid Screen</font></center>
+        <br/>
+        <div style="text-align:center;">
+            <input type="text" id="mInputText">
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            Location:
+            <input type="text" id="locationInputText">
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            Profile:
+            <input type="text" id="profileInputText">
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            Presence:
+            <input type="text" id="presenceInputText">
+        </div>
+        <br/>
+        <img src="file:///android_asset/webapp/logo.png" style="width:72px;"/>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Send message" onClick="sendMessage()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Compose message" onClick="composeMessage()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Finish" onClick="finish()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Get MSISDN" onClick="getMsisdn()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Get Country" onClick="getCountry()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Get CanSendMessage" onClick="getCanSendMessage()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Get Language" onClick="getLanguage()" />
+        </div>
+
+        <script type="text/javascript">
+            function finish() {
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function sendMessage() {
+                Ayoba.sendMessage(document.getElementById("mInputText").value);
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function composeMessage() {
+                Ayoba.composeMessage(document.getElementById("mInputText").value);
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function getCountry() {
+                var country = Ayoba.getCountry();
+                document.getElementById("mInputText").value = country
+                return country
+            }
+        </script>
+        <script type="text/javascript">
+            function getMsisdn() {
+                var msisdn = Ayoba.getMsisdn();
+                document.getElementById("mInputText").value = msisdn
+                return msisdn
+            }
+        </script>
+        <script type="text/javascript">
+            function getCanSendMessage() {
+                var canSendMessage = Ayoba.getCanSendMessage();
+                document.getElementById("mInputText").value = canSendMessage
+                return canSendMessage
+            }
+        </script>
+        <script type="text/javascript">
+            function getLanguage() {
+                var language = Ayoba.getLanguage();
+                document.getElementById("mInputText").value = language
+                return language
+            }
+        </script>
+        <script type="text/javascript">
+            function onLocationChanged(lat, lon) {
+                document.getElementById("locationInputText").value = lat.concat(", ").concat(lon)
+            }
+        </script>
+        <script type="text/javascript">
+            function onProfileChanged(nickname) {
+                document.getElementById("profileInputText").value = nickname
+            }
+        </script>
+        <script type="text/javascript">
+            function onPresenceChanged(presence) {
+                document.getElementById("presenceInputText").value = presence
+            }
+        </script>
+    </body>
+</html>
