@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            img {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+        </style>
+    </head>
+    <body style="background-color:#1565c0;">
+        <center><font color="#ffc107">Example Micro App - Mid Screen</font></center>
+        <br/>
+        <div style="text-align:center;">
+            <input type="text" id="mInputText">
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            Location:
+            <input type="text" id="locationInputText">
+        </div>
+        <div style="text-align:center;">
+            Profile:
+            <input type="text" id="profileInputText">
+        </div>
+        <div style="text-align:center;">
+            Presence:
+            <input type="text" id="presenceInputText">
+        </div>
+        <img src="file:///android_asset/webapp/logo.png" style="width:72px;"/>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Send message" onClick="sendMessage()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Compose message" onClick="composeMessage()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Finish" onClick="finish()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Send media" onClick="sendMedia()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="text" id="inputTextLat" size="10">
+            <input type="text" id="inputTextLon" size="10">
+            <input type="button" value="Send location" onClick="sendLocation()" />
+        </div>
+        <br/>
+        <div style="text-align:center;">
+            <input type="button" value="Get MSISDN" onClick="getMsisdn()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Get Country" onClick="getCountry()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Get CanSendMessage" onClick="getCanSendMessage()" />
+        </div>
+        <div style="text-align:center;">
+            <input type="button" value="Get Language" onClick="getLanguage()" />
+        </div>
+
+        <script type="text/javascript">
+            function finish() {
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function sendMessage() {
+                Ayoba.sendMessage(document.getElementById("mInputText").value);
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function composeMessage() {
+                Ayoba.composeMessage(document.getElementById("mInputText").value);
+                Ayoba.finish();
+            }
+        </script>
+        <script type="text/javascript">
+            function sendMedia() {
+                Ayoba.sendMedia('https://i.ytimg.com/vi/d5PP4vIX7P8/maxresdefault.jpg', 'MIME_IMAGE');
+            }
+        </script>
+        <script type="text/javascript">
+            function sendLocation() {
+                Ayoba.sendLocation(document.getElementById("inputTextLat").value, document.getElementById("inputTextLon").value);
+            }
+        </script>
+        <script type="text/javascript">
+            function getCountry() {
+                var country = Ayoba.getCountry();
+                document.getElementById("mInputText").value = country
+                return country
+            }
+        </script>
+        <script type="text/javascript">
+            function getMsisdn() {
+                var msisdn = Ayoba.getMsisdn();
+                document.getElementById("mInputText").value = msisdn
+                return msisdn
+            }
+        </script>
+        <script type="text/javascript">
+            function getCanSendMessage() {
+                var canSendMessage = Ayoba.getCanSendMessage();
+                document.getElementById("mInputText").value = canSendMessage
+                return canSendMessage
+            }
+        </script>
+        <script type="text/javascript">
+            function getLanguage() {
+                var language = Ayoba.getLanguage();
+                document.getElementById("mInputText").value = language
+                return language
+            }
+        </script>
+        <script type="text/javascript">
+            function onLocationChanged(lat, lon) {
+                document.getElementById("locationInputText").value = lat.concat(", ").concat(lon)
+            }
+        </script>
+        <script type="text/javascript">
+            function onProfileChanged(nickname) {
+                document.getElementById("profileInputText").value = nickname
+            }
+        </script>
+        <script type="text/javascript">
+            function onPresenceChanged(presence) {
+                document.getElementById("presenceInputText").value = presence
+            }
+        </script>
+        <script type="text/javascript">
+            function onMediaSentResponse(responseCode, encodedUrl) {
+                document.getElementById("mInputText").value = responseCode.concat(" - ").concat(encodedUrl)
+            }
+        </script>
+        <script type="text/javascript">
+            function onLocationSentResponse(responseCode) {
+                document.getElementById("mInputText").value = responseCode
+            }
+        </script>
+    </body>
+</html>
