@@ -63,7 +63,8 @@ You can test your microapp only after beeing published. Please visit the request
 Using GitLab Pages, your microapp can be deployed and public visible to internet. E.g.
 
 ```
-https://xpertai.gitlab.io/microapp/
+https://xpertai.gitlab.io/microapp/ayoba-sample
+
 ````
 
 This will allow you as a developer to publish your microapp without running a complete webserver. 
